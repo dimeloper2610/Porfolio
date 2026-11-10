@@ -11,9 +11,6 @@
     try { localStorage.setItem('theme', next); } catch (e) {}
   });
 
-  /* ---------- Download CV -> print dialog (print stylesheet = clean CV) ---------- */
-  document.getElementById('printBtn').addEventListener('click', () => window.print());
-
   /* ---------- Copy email ---------- */
   const copyBtn = document.getElementById('copyEmail');
   copyBtn.addEventListener('click', async () => {

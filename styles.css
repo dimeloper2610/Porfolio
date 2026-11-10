@@ -212,6 +212,7 @@ strong { font-weight: 600; color: var(--text); }
 .stat__num { font: 700 clamp(40px, 4.4vw, 56px)/1 var(--display); letter-spacing: -.04em; }
 .stat__num, .stat__num span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat__num { display: block; margin-bottom: 6px; }
+.stat__num--word { font-size: clamp(22px, 2vw, 27px); letter-spacing: -.03em; padding-bottom: 4px; white-space: nowrap; }
 .stat__label { display: block; color: var(--muted); font-size: 14px; }
 
 /* line icons */
@@ -269,6 +270,15 @@ strong { font-weight: 600; color: var(--text); }
 .tile--quote { display: flex; flex-direction: column; justify-content: center; gap: 12px; }
 .quote__mark { color: var(--accent); opacity: .7; }
 .quote__text { font: 500 clamp(18px, 1.9vw, 23px)/1.4 var(--display); letter-spacing: -.01em; }
+.cert {
+  display: inline-flex; align-items: center; gap: 12px; align-self: flex-start; margin-top: 8px;
+  padding: 8px 16px 8px 8px; border-radius: 16px; text-decoration: none;
+  border: 1px solid var(--border); background: var(--tile-solid); transition: border-color .2s;
+}
+.cert:hover { border-color: var(--accent); }
+.cert strong { display: block; font: 600 14.5px var(--display); }
+.cert small { display: block; font-size: 12.5px; color: var(--muted); }
+.edu--feature { background: linear-gradient(160deg, color-mix(in srgb, var(--c1) 14%, var(--tile)), var(--tile)); }
 
 /* values */
 .values { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 14px; }
@@ -418,14 +428,26 @@ strong { font-weight: 600; color: var(--text); }
 }
 
 /* ================= PRINT (Download CV) ================= */
+.print-only { display: none; }
 @media print {
+  .print-only { display: block; }
+  .print-contact { font-size: 9.5pt; color: #333; margin: -2pt 0 8pt; }
+  .contact { display: none !important; }
+  .exp__panel { break-inside: auto !important; }
+  .job__points li, .job__title, .job__meta { break-inside: avoid; break-after: auto; }
+  .job__title { break-after: avoid; }
+  .exp__panel .tags { display: none; }
+  .tags { display: block; font-size: 10pt; color: #222; }
+  .tags li { display: inline; padding: 0; background: none; border-radius: 0; font-size: inherit; color: inherit; }
+  .tags li + li::before { content: " · "; color: #888; }
+  .job__points { gap: 2pt; margin-bottom: 4pt; }
   :root, :root[data-theme="dark"] {
     --bg: #fff; --tile: #fff; --tile-solid: #fff; --text: #000; --muted: #333; --border: #ddd;
     --accent: #4c1d95; --tag-bg: #f1f1f4; --tag-text: #222; --shadow: none;
   }
   @page { margin: 14mm; }
   body { font-size: 10.5pt; line-height: 1.45; }
-  .bg, .grain, .nav, .footer, .cta, .tile--photo, .tile--stack, .tile--loc, .tile--now, .tile--stat, .tile--values, .exp__tabs, .chip, .ic { display: none !important; }
+  .bg, .grain, .nav, .footer, .cta, .tile--photo, .tile--stack, .tile--loc, .tile--now, .tile--stat, .tile--values, .exp__tabs, .chip, .ic, .cert { display: none !important; }
   .reveal, .bento--hero .tile { opacity: 1 !important; transform: none !important; animation: none !important; }
   .tile { border: 0; box-shadow: none; backdrop-filter: none; padding: 0; background: none !important; overflow: visible; }
   .tile::before, .contact::after { display: none; }
@@ -444,7 +466,7 @@ strong { font-weight: 600; color: var(--text); }
   .section__head .kicker { display: none; }
   .section__title { font-size: 15pt; }
   .exp { display: block; padding: 0; }
-  .exp__panel { display: block !important; animation: none; break-inside: avoid; margin-bottom: 10pt; }
+  .exp__panel { display: block !important; animation: none; margin-bottom: 10pt; }
   .job__title { font-size: 12.5pt; }
   .job__title--sub { margin-top: 8pt; }
   .job__meta { margin: 2pt 0 4pt; }

@@ -8,6 +8,7 @@ Plain HTML/CSS/JS, no build step. Hosted with GitHub Pages from the `main` branc
 - `styles.css` — design (light/dark theme, print styles for "Download CV")
 - `script.js` — theme toggle, scroll animations
 - `photo.jpg` — profile photo
+- `Dimitrios-Fragkoulis-CV.pdf` — downloadable CV, generated from the page's print stylesheet (regenerate after content changes)
 
 ## Notes
 
