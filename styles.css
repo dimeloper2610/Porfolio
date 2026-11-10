@@ -156,13 +156,11 @@ strong { font-weight: 600; color: var(--text); }
   padding-top: 96px;
   grid-template-columns: repeat(6, 1fr);
   grid-template-areas:
-    "photo photo intro intro intro intro"
-    "photo photo intro intro intro intro"
-    "photo photo years devs brands now"
+    "intro intro intro intro years devs"
+    "intro intro intro intro brands now"
     "stack stack stack stack loc loc"
     "quote quote quote values values values";
 }
-.tile--photo  { grid-area: photo; padding: 0; min-height: 460px; }
 .tile--intro  { grid-area: intro; }
 .t-years      { grid-area: years; }
 .t-devs       { grid-area: devs; }
@@ -173,23 +171,20 @@ strong { font-weight: 600; color: var(--text); }
 .tile--quote  { grid-area: quote; }
 .tile--values { grid-area: values; }
 
-/* photo */
-.tile--photo img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%;
-  transition: transform 1.2s cubic-bezier(.2,.8,.2,1);
+/* identity: small avatar + name */
+.id { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; }
+.avatar {
+  flex: none; width: 84px; height: 84px; border-radius: 26px; padding: 3px;
+  background: var(--grad); box-shadow: 0 14px 30px -14px var(--c1);
+  transform: rotate(-4deg); transition: transform .4s cubic-bezier(.2,.8,.2,1);
 }
-.tile--photo:hover img { transform: scale(1.04); }
-.tile--photo::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(7,7,13,.85));
-}
-.photo__caption { position: absolute; left: 22px; right: 22px; bottom: 22px; z-index: 2; color: #fff; }
-.photo__name { font: 700 clamp(30px, 3.2vw, 40px)/1.02 var(--display); letter-spacing: -.03em; margin-top: 12px; }
+.avatar:hover { transform: rotate(0) scale(1.05); }
+.avatar img { width: 100%; height: 100%; border-radius: 23px; object-fit: cover; object-position: 50% 20%; display: block; }
+.id__name { font: 700 22px/1.15 var(--display); letter-spacing: -.02em; margin-bottom: 6px; }
 .chip {
-  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
-  font-size: 12.5px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 8px; padding: 4px 11px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 500; color: var(--muted); background: var(--tag-bg);
 }
-.chip--glass { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(8px); }
 
 /* intro */
 .tile--intro { display: flex; flex-direction: column; justify-content: center; padding: 40px; }
@@ -367,8 +362,7 @@ strong { font-weight: 600; color: var(--text); }
   .bento--hero {
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
-      "photo photo intro intro"
-      "photo photo intro intro"
+      "intro intro intro intro"
       "years devs brands now"
       "stack stack stack stack"
       "loc loc values values"
@@ -385,7 +379,6 @@ strong { font-weight: 600; color: var(--text); }
     padding-top: 76px;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "photo photo"
       "intro intro"
       "years devs"
       "brands now"
@@ -395,7 +388,9 @@ strong { font-weight: 600; color: var(--text); }
       "values values";
   }
   .tile { padding: 20px; border-radius: 20px; }
-  .tile--photo { min-height: 380px; padding: 0; }
+  .avatar { width: 68px; height: 68px; border-radius: 22px; }
+  .avatar img { border-radius: 19px; }
+  .id__name { font-size: 19px; }
   .tile--intro { padding: 24px; }
   .tile--stack { padding-left: 0; padding-right: 0; }
   .tile--stack .label { padding: 0 20px; }
@@ -426,7 +421,9 @@ strong { font-weight: 600; color: var(--text); }
   .tile::before, .contact::after { display: none; }
   .bento, .bento--hero, .bento--skills, .bento--edu { display: block; padding: 0; }
   .tile--intro { padding: 0 0 8pt; }
-  .tile--intro::before { content: "Dimitrios Fragkoulis"; display: block; position: static; opacity: 1; background: none; font: 700 24pt var(--display); }
+  .id { margin-bottom: 6pt; }
+  .avatar { width: 60px; height: 60px; transform: none; box-shadow: none; }
+  .id__name { font-size: 22pt; }
   .intro__headline { font-size: 14pt; margin: 4pt 0; }
   .grad, .stat__num { color: #4c1d95; background: none; }
   .tile--quote { margin: 6pt 0; }
