@@ -696,3 +696,26 @@ kbd {
   --map-hue: 10deg;
 }
 .palbar__sep { width: 1px; height: 18px; background: var(--border); margin: 0 2px; }
+
+/* ================= HEADLINE MOTION ================= */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* rotating middle phrase: all phrases share one grid cell, so the slot is always
+   sized by the longest one and nothing below it moves when the text changes */
+.rot { display: inline-grid; vertical-align: top; }
+.rot > span { grid-area: 1 / 1; white-space: nowrap; opacity: 0; transform: translateY(35%); transition: opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
+.rot > span.is-on { opacity: 1; transform: none; }
+.rot > span.is-off { opacity: 0; transform: translateY(-35%); }
+.rot--wrap > span { white-space: normal; }
+@media (max-width: 420px) { .intro__headline { font-size: 30px; } }
+/* underline that draws itself once under "Still hands-on." */
+.hands { position: relative; display: inline-block; }
+.hands__line { position: absolute; left: 0; bottom: -.12em; width: 100%; height: .22em; overflow: visible; pointer-events: none; }
+.hands__line path {
+  fill: none; stroke: var(--c1); stroke-width: 2.6; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.1s .9s cubic-bezier(.65,0,.35,1) forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .hands__line path { animation: none; stroke-dashoffset: 0; }
+}
+@media print { .hands__line { display: none; } }

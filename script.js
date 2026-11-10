@@ -272,3 +272,36 @@
   });
   sync();
 })();
+
+/* ---------- Rotating middle phrase of the headline ---------- */
+(() => {
+  const el = document.getElementById('rot');
+  if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // one span per phrase, stacked in the same grid cell (see .rot in styles.css)
+  const items = el.dataset.phrases.split("|").map((p, k) => {
+    const s = document.createElement("span");
+    s.textContent = p;
+    if (k === 0) s.className = "is-on";
+    return s;
+  });
+  el.replaceChildren(...items);
+  // on narrow screens keep only phrases that fit on one line, so the slot never
+  // reserves a second line (the first phrase always stays)
+  const maxW = el.closest('.intro__headline').clientWidth;
+  items.slice(1).forEach((s) => {
+    if (s.scrollWidth > maxW) { s.remove(); items.splice(items.indexOf(s), 1); }
+  });
+  if (items[0].scrollWidth > maxW) el.classList.add('rot--wrap');
+  if (items.length < 2) return;
+  let i = 0;
+  const swap = () => {
+    if (document.hidden) return; // pause while the tab is in the background
+    const cur = items[i];
+    i = (i + 1) % items.length;
+    const next = items[i];
+    cur.classList.remove("is-on"); cur.classList.add("is-off");
+    next.classList.remove("is-off"); next.classList.add("is-on");
+    setTimeout(() => cur.classList.remove("is-off"), 500); // park below for its next turn
+  };
+  setTimeout(() => setInterval(swap, 3200), 1500);
+})();
