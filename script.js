@@ -249,3 +249,26 @@
   const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
   document.querySelectorAll('.kbd-mod').forEach((k) => (k.textContent = isMac ? '⌘' : 'Ctrl'));
 })();
+
+/* ---------- Palette preview bar (visible only after opening the page with ?palette=) ---------- */
+(() => {
+  const bar = document.getElementById('palbar');
+  if (!bar) return;
+  const root = document.documentElement;
+  const name = document.getElementById('palname');
+  const sync = () => {
+    const cur = root.dataset.palette || 'emerald';
+    bar.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.p === cur));
+    name.textContent = cur;
+  };
+  bar.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    const p = b.dataset.p;
+    if (p === 'emerald') delete root.dataset.palette; else root.dataset.palette = p;
+    try { sessionStorage.setItem('palette', p); } catch (err) {}
+    const url = new URL(location.href); url.searchParams.set('palette', p); history.replaceState(null, '', url);
+    sync();
+  });
+  sync();
+})();

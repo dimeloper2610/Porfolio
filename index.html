@@ -27,6 +27,14 @@
   <link rel="stylesheet" href="styles.css" />
   <script>
     try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    /* palette preview: ?palette=name (kept for the tab session) — default is emerald */
+    try {
+      const p = new URLSearchParams(location.search).get('palette');
+      if (p !== null) sessionStorage.setItem('palette', p || 'emerald');
+      const s = sessionStorage.getItem('palette');
+      if (s && s !== 'emerald') document.documentElement.dataset.palette = s;
+      if (s) document.documentElement.dataset.preview = '1';
+    } catch (e) {}
   </script>
 </head>
 <body>
@@ -340,6 +348,20 @@
       <div class="cmdk__foot"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> select</span><span><kbd class="kbd-mod">⌘</kbd><kbd>K</kbd> toggle</span></div>
     </div>
   </dialog>
+
+  <!-- palette preview bar: only shown when the page is opened with ?palette= -->
+  <div class="palbar" id="palbar" aria-label="Palette preview">
+    <span class="palbar__label">Palette</span>
+    <button type="button" data-p="emerald" style="--sw:#34d399" title="Emerald"></button>
+    <button type="button" data-p="violet" style="--sw:linear-gradient(120deg,#a78bfa,#22d3ee)" title="Violet"></button>
+    <button type="button" data-p="blue" style="--sw:#60a5fa" title="Blue"></button>
+    <button type="button" data-p="nordic" style="--sw:#7dd3fc" title="Nordic"></button>
+    <button type="button" data-p="gold" style="--sw:#e6c27a" title="Gold"></button>
+    <button type="button" data-p="lime" style="--sw:#bef264" title="Lime"></button>
+    <button type="button" data-p="rose" style="--sw:#fb7185" title="Rose"></button>
+    <button type="button" data-p="mono" style="--sw:#e4e4e7" title="Mono"></button>
+    <span class="palbar__name" id="palname"></span>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="script.js"></script>
