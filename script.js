@@ -128,72 +128,52 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  /* ---------- Impact visuals: build cells, light them up when visible ---------- */
-  const vizzes = [...document.querySelectorAll('.viz')];
-  vizzes.forEach((viz) => {
-    const n = +viz.dataset.cells;
-    const step = viz.classList.contains('viz--team') ? 0.12 : 0.035;
-    for (let i = 0; i < n; i++) {
-      const c = document.createElement('i');
-      c.style.transitionDelay = reduceMotion ? '0s' : `${(i * step).toFixed(3)}s`;
-      c.style.setProperty('--d', `${(i * 0.4).toFixed(1)}s`);
-      viz.appendChild(c);
-    }
-  });
-  const vizIO = new IntersectionObserver((entries) => {
-    entries.forEach((en) => {
-      if (!en.isIntersecting) return;
-      en.target.querySelectorAll('.viz').forEach((v) => v.classList.add('on'));
-      vizIO.unobserve(en.target);
-    });
-  }, { threshold: 0.35 });
-  const impact = document.querySelector('.tile--impact');
-  if (impact) vizIO.observe(impact);
-
-  /* ---------- Custom cursor + magnetic buttons (mouse/trackpad only) ---------- */
+  /* ---------- Cursor follower (mouse/trackpad only) ----------
+     The system cursor stays visible; a soft ring trails it closely and only
+     becomes noticeable over clickable things. The animation loop sleeps when
+     the ring has caught up, so nothing runs while the mouse is still. */
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   if (finePointer && !reduceMotion) {
-    const dot = document.createElement('div');
     const ring = document.createElement('div');
-    dot.className = 'cursor-dot';
     ring.className = 'cursor-ring';
-    dot.setAttribute('aria-hidden', 'true');
     ring.setAttribute('aria-hidden', 'true');
-    document.body.append(ring, dot);
-    root.classList.add('has-cursor');
+    document.body.append(ring);
+    root.classList.add('has-cursor', 'cursor-hidden'); // stays hidden until the mouse first moves
 
-    let mx = -100, my = -100, rx = -100, ry = -100;
+    let mx = 0, my = 0, rx = 0, ry = 0, running = false, last = 0, started = false;
+    const tick = (now) => {
+      const dt = Math.min((now - last) / 16.67, 3); // frame-rate independent easing
+      last = now;
+      const k = 1 - Math.pow(1 - 0.32, dt);
+      rx += (mx - rx) * k;
+      ry += (my - ry) * k;
+      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+      if (Math.abs(mx - rx) + Math.abs(my - ry) > 0.2) requestAnimationFrame(tick);
+      else running = false;
+    };
     document.addEventListener('pointermove', (e) => {
       if (e.pointerType !== 'mouse') return;
       mx = e.clientX; my = e.clientY;
-      dot.style.transform = `translate(${mx}px, ${my}px)`;
+      if (!started) { rx = mx; ry = my; started = true; }
       root.classList.remove('cursor-hidden');
+      if (!running) { running = true; last = performance.now(); requestAnimationFrame(tick); }
     }, { passive: true });
-    document.addEventListener('pointerleave', () => root.classList.add('cursor-hidden'));
+    document.documentElement.addEventListener('pointerleave', () => root.classList.add('cursor-hidden'));
     document.addEventListener('pointerdown', () => root.classList.add('cursor-down'));
     document.addEventListener('pointerup', () => root.classList.remove('cursor-down'));
 
-    const loop = () => {
-      rx += (mx - rx) * 0.18;
-      ry += (my - ry) * 0.18;
-      ring.style.transform = `translate(${rx}px, ${ry}px)`;
-      requestAnimationFrame(loop);
-    };
-    requestAnimationFrame(loop);
-
-    const interactive = 'a, button, [role="tab"], .marquee li, .cmdk__item';
+    const interactive = 'a, button, [role="tab"], .cmdk__item';
     document.addEventListener('pointerover', (e) => {
       const t = e.target.closest && e.target.closest(interactive);
       root.classList.toggle('cursor-link', !!t);
-      root.classList.toggle('cursor-text', !t && !!(e.target.closest && e.target.closest('input, textarea')));
     });
 
-    // magnetic pull on primary actions
-    document.querySelectorAll('.btn, .nav__logo, .icon-btn').forEach((el) => {
+    // gentle magnetic pull on the main buttons only
+    document.querySelectorAll('.btn').forEach((el) => {
       el.addEventListener('pointermove', (e) => {
         const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * 0.22;
-        const y = (e.clientY - r.top - r.height / 2) * 0.3;
+        const x = (e.clientX - r.left - r.width / 2) * 0.1;
+        const y = (e.clientY - r.top - r.height / 2) * 0.14;
         el.style.transform = `translate(${x}px, ${y}px)`;
       });
       el.addEventListener('pointerleave', () => { el.style.transform = ''; });
