@@ -257,7 +257,7 @@
   const root = document.documentElement;
   const name = document.getElementById('palname');
   const sync = () => {
-    const cur = root.dataset.palette || 'emerald';
+    const cur = root.dataset.palette || 'navy';
     bar.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.p === cur));
     name.textContent = cur;
   };
@@ -265,7 +265,7 @@
     const b = e.target.closest('button');
     if (!b) return;
     const p = b.dataset.p;
-    if (p === 'emerald') delete root.dataset.palette; else root.dataset.palette = p;
+    root.dataset.palette = p;
     try { sessionStorage.setItem('palette', p); } catch (err) {}
     const url = new URL(location.href); url.searchParams.set('palette', p); history.replaceState(null, '', url);
     sync();

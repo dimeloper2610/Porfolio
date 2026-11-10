@@ -10,7 +10,7 @@ from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
 PHOTO, OUT = sys.argv[1], sys.argv[2]
-ACCENT = RGBColor(0x5B, 0x21, 0xB6)
+ACCENT = RGBColor(0x1C, 0x35, 0x5E)
 MUTED = RGBColor(0x55, 0x58, 0x6A)
 FONT = "Arial"
 

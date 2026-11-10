@@ -602,7 +602,7 @@ kbd {
   .job__points { gap: 2pt; margin-bottom: 4pt; }
   :root, :root[data-theme="dark"] {
     --bg: #fff; --tile: #fff; --tile-solid: #fff; --text: #000; --muted: #333; --border: #ddd;
-    --accent: #4c1d95; --tag-bg: #f1f1f4; --tag-text: #222; --shadow: none;
+    --accent: #1c355e; --tag-bg: #f1f1f4; --tag-text: #222; --shadow: none;
   }
   @page { margin: 14mm; }
   body { font-size: 10.5pt; line-height: 1.45; }
@@ -616,7 +616,7 @@ kbd {
   .avatar { width: 60px; height: 60px; transform: none; box-shadow: none; }
   .id__name { font-size: 22pt; }
   .intro__headline { font-size: 14pt; margin: 4pt 0; }
-  .grad, .stat__num { color: #4c1d95; background: none; }
+  .grad { color: #1c355e; background: none; }
   .tile--quote { margin: 6pt 0; }
   .quote__mark { display: none; }
   .quote__text { font-size: 11pt; font-style: italic; }

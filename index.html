@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-palette="navy">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dimitrios Fragkoulis — Engineering Team Lead</title>
   <meta name="description" content="Dimitrios Fragkoulis — Frontend Engineering Team Lead in Stockholm. Servant leadership, Agile & Lean, Angular, TypeScript, micro-frontends." />
   <meta property="og:title" content="Dimitrios Fragkoulis — Engineering Team Lead" />
-  <meta property="og:description" content="I lead frontend teams that ship at scale. 30+ brands migrated to Fabric, 25+ micro-frontend components, 8-engineer distributed team. Stockholm, Sweden." />
+  <meta property="og:description" content="Engineering leader and frontend architect, still hands-on. 30+ brands migrated to Fabric, 25+ micro-frontend components, 8-engineer distributed team. Stockholm, Sweden." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dimeloper2610.github.io/" />
   <meta property="og:site_name" content="Dimitrios Fragkoulis" />
@@ -18,8 +18,8 @@
   <meta name="twitter:title" content="Dimitrios Fragkoulis — Engineering Team Lead" />
   <meta name="twitter:image" content="https://dimeloper2610.github.io/og-image.png" />
   <link rel="canonical" href="https://dimeloper2610.github.io/" />
-  <meta name="theme-color" content="#0a0a12" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c3aed'/><stop offset='1' stop-color='%2306b6d4'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><text x='50%' y='55%' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='26' fill='white'>DF</text></svg>" />
+  <meta name="theme-color" content="#08101d" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%2313284a'/><stop offset='1' stop-color='%231c355e'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><text x='50%' y='55%' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='26' fill='%23efe3c8'>DF</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
@@ -27,12 +27,12 @@
   <link rel="stylesheet" href="styles.css" />
   <script>
     try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
-    /* palette preview: ?palette=name (kept for the tab session) — default is emerald */
+    /* palette preview: ?palette=name (kept for the tab session) — default is navy (set on <html>) */
     try {
       const p = new URLSearchParams(location.search).get('palette');
       if (p !== null) sessionStorage.setItem('palette', p || 'emerald');
       const s = sessionStorage.getItem('palette');
-      if (s && s !== 'emerald') document.documentElement.dataset.palette = s;
+      if (s) document.documentElement.dataset.palette = s;
       if (s) document.documentElement.dataset.preview = '1';
     } catch (e) {}
   </script>
@@ -73,11 +73,10 @@
           </div>
         </div>
         <p class="print-only print-contact">Stockholm, Sweden · fragkoulis.dev@gmail.com · linkedin.com/in/dimitrios-fragkoulis-1a848314b · dimeloper2610.github.io</p>
-        <p class="kicker">People leadership · Frontend architecture</p>
-        <h2 class="intro__headline">I lead frontend teams that <span class="grad">ship at scale.</span></h2>
+        <h2 class="intro__headline">Engineering leader.<br />Frontend architect.<br /><span class="grad">Still hands-on.</span></h2>
         <p class="intro__lead">
           9+ years in tech, from developer to team lead. I grow self-governing teams
-          and stay hands-on with the architecture they build on.
+          and stay close to the code and architecture they build on.
         </p>
         <div class="cta">
           <a class="btn btn--primary" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
