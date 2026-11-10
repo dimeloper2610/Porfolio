@@ -127,4 +127,156 @@
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Impact visuals: build cells, light them up when visible ---------- */
+  const vizzes = [...document.querySelectorAll('.viz')];
+  vizzes.forEach((viz) => {
+    const n = +viz.dataset.cells;
+    const step = viz.classList.contains('viz--team') ? 0.12 : 0.035;
+    for (let i = 0; i < n; i++) {
+      const c = document.createElement('i');
+      c.style.transitionDelay = reduceMotion ? '0s' : `${(i * step).toFixed(3)}s`;
+      c.style.setProperty('--d', `${(i * 0.4).toFixed(1)}s`);
+      viz.appendChild(c);
+    }
+  });
+  const vizIO = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      en.target.querySelectorAll('.viz').forEach((v) => v.classList.add('on'));
+      vizIO.unobserve(en.target);
+    });
+  }, { threshold: 0.35 });
+  const impact = document.querySelector('.tile--impact');
+  if (impact) vizIO.observe(impact);
+
+  /* ---------- Custom cursor + magnetic buttons (mouse/trackpad only) ---------- */
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (finePointer && !reduceMotion) {
+    const dot = document.createElement('div');
+    const ring = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    dot.setAttribute('aria-hidden', 'true');
+    ring.setAttribute('aria-hidden', 'true');
+    document.body.append(ring, dot);
+    root.classList.add('has-cursor');
+
+    let mx = -100, my = -100, rx = -100, ry = -100;
+    document.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = `translate(${mx}px, ${my}px)`;
+      root.classList.remove('cursor-hidden');
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => root.classList.add('cursor-hidden'));
+    document.addEventListener('pointerdown', () => root.classList.add('cursor-down'));
+    document.addEventListener('pointerup', () => root.classList.remove('cursor-down'));
+
+    const loop = () => {
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+      ring.style.transform = `translate(${rx}px, ${ry}px)`;
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+
+    const interactive = 'a, button, [role="tab"], .marquee li, .cmdk__item';
+    document.addEventListener('pointerover', (e) => {
+      const t = e.target.closest && e.target.closest(interactive);
+      root.classList.toggle('cursor-link', !!t);
+      root.classList.toggle('cursor-text', !t && !!(e.target.closest && e.target.closest('input, textarea')));
+    });
+
+    // magnetic pull on primary actions
+    document.querySelectorAll('.btn, .nav__logo, .icon-btn').forEach((el) => {
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * 0.22;
+        const y = (e.clientY - r.top - r.height / 2) * 0.3;
+        el.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+    });
+  }
+
+  /* ---------- Command palette (Cmd/Ctrl + K) ---------- */
+  const dlg = document.getElementById('cmdk');
+  const input = document.getElementById('cmdkInput');
+  const list = document.getElementById('cmdkList');
+  const goTo = (id) => () => document.getElementById(id).scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+  const download = (href) => () => { const a = document.createElement('a'); a.href = href; a.download = ''; document.body.appendChild(a); a.click(); a.remove(); };
+  const email = document.getElementById('copyEmail').dataset.email;
+  const actions = [
+    { group: 'Navigate', label: 'Experience', hint: 'Section', run: goTo('experience') },
+    { group: 'Navigate', label: 'Skills', hint: 'Section', run: goTo('skills') },
+    { group: 'Navigate', label: 'Education & languages', hint: 'Section', run: goTo('education') },
+    { group: 'Navigate', label: 'Contact', hint: 'Section', run: goTo('contact') },
+    { group: 'Actions', label: 'Copy email address', hint: email, run: () => navigator.clipboard && navigator.clipboard.writeText(email) },
+    { group: 'Actions', label: 'Send an email', hint: 'mailto', run: () => { location.href = `mailto:${email}`; } },
+    { group: 'Actions', label: 'Download CV (PDF)', hint: 'PDF', run: download('Dimitrios-Fragkoulis-CV.pdf') },
+    { group: 'Actions', label: 'Download CV (Word)', hint: 'DOCX', run: download('Dimitrios-Fragkoulis-CV.docx') },
+    { group: 'Actions', label: 'Open LinkedIn profile', hint: 'linkedin.com', run: () => window.open('https://www.linkedin.com/in/dimitrios-fragkoulis-1a848314b', '_blank', 'noopener') },
+    { group: 'Actions', label: 'Toggle light / dark theme', hint: 'Theme', run: () => document.getElementById('themeToggle').click() },
+  ];
+  let filtered = actions, active = 0;
+
+  const render = () => {
+    list.innerHTML = '';
+    if (!filtered.length) {
+      list.innerHTML = '<li class="cmdk__empty">No results</li>';
+      return;
+    }
+    let lastGroup = '';
+    filtered.forEach((a, i) => {
+      if (a.group !== lastGroup) {
+        const g = document.createElement('li');
+        g.className = 'cmdk__group'; g.textContent = a.group; g.setAttribute('role', 'presentation');
+        list.appendChild(g); lastGroup = a.group;
+      }
+      const li = document.createElement('li');
+      li.className = 'cmdk__item'; li.id = `cmdk-${i}`;
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', i === active);
+      li.innerHTML = `<span></span><small></small>`;
+      li.firstChild.textContent = a.label;
+      li.lastChild.textContent = a.hint;
+      li.addEventListener('pointermove', () => { if (active !== i) { active = i; mark(); } });
+      li.addEventListener('click', () => execute(i));
+      list.appendChild(li);
+    });
+    input.setAttribute('aria-activedescendant', `cmdk-${active}`);
+  };
+  const mark = () => {
+    list.querySelectorAll('.cmdk__item').forEach((el) => el.setAttribute('aria-selected', el.id === `cmdk-${active}`));
+    input.setAttribute('aria-activedescendant', `cmdk-${active}`);
+    const cur = document.getElementById(`cmdk-${active}`);
+    if (cur) cur.scrollIntoView({ block: 'nearest' });
+  };
+  const open = () => {
+    if (dlg.open) return;
+    input.value = ''; filtered = actions; active = 0; render();
+    dlg.showModal();
+    input.focus();
+  };
+  const close = () => dlg.open && dlg.close();
+  const execute = (i) => { const a = filtered[i]; if (!a) return; close(); setTimeout(a.run, 60); };
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    filtered = actions.filter((a) => (a.label + ' ' + a.group + ' ' + a.hint).toLowerCase().includes(q));
+    active = 0; render();
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); active = (active + 1) % Math.max(filtered.length, 1); mark(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); active = (active - 1 + filtered.length) % Math.max(filtered.length, 1); mark(); }
+    else if (e.key === 'Enter') { e.preventDefault(); execute(active); }
+  });
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) close(); });
+  document.getElementById('cmdkBtn').addEventListener('click', open);
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); dlg.open ? close() : open(); }
+  });
+  const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+  document.querySelectorAll('.kbd-mod').forEach((k) => (k.textContent = isMac ? '⌘' : 'Ctrl'));
 })();
