@@ -421,10 +421,8 @@ strong { font-weight: 600; color: var(--text); }
   transform: scale(1); opacity: .7;
   transition: transform .35s cubic-bezier(.2,.8,.2,1), background .3s, border-color .3s, opacity .3s;
 }
-.cursor-link .cursor-ring::after {
-  transform: scale(1.7); opacity: 1;
-  background: color-mix(in srgb, var(--c1) 10%, transparent); border-color: transparent;
-}
+/* over buttons and links the ring steps aside so text stays crisp */
+.cursor-link .cursor-ring::after { transform: scale(.4); opacity: 0; }
 .cursor-down .cursor-ring::after { transform: scale(.8); }
 .cursor-hidden .cursor-ring::after { opacity: 0; }
 .btn { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .2s, border-color .2s; }

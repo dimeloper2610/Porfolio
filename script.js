@@ -167,17 +167,6 @@
       const t = e.target.closest && e.target.closest(interactive);
       root.classList.toggle('cursor-link', !!t);
     });
-
-    // gentle magnetic pull on the main buttons only
-    document.querySelectorAll('.btn').forEach((el) => {
-      el.addEventListener('pointermove', (e) => {
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * 0.1;
-        const y = (e.clientY - r.top - r.height / 2) * 0.14;
-        el.style.transform = `translate(${x}px, ${y}px)`;
-      });
-      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-    });
   }
 
   /* ---------- Command palette (Cmd/Ctrl + K) ---------- */
