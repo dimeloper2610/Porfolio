@@ -212,7 +212,6 @@ strong { font-weight: 600; color: var(--text); }
 .stat__num { font: 700 clamp(40px, 4.4vw, 56px)/1 var(--display); letter-spacing: -.04em; }
 .stat__num, .stat__num span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat__num { display: block; margin-bottom: 6px; }
-.stat__num--word { font-size: clamp(22px, 2vw, 27px); letter-spacing: -.03em; padding-bottom: 4px; white-space: nowrap; }
 .stat__label { display: block; color: var(--muted); font-size: 14px; }
 
 /* line icons */
