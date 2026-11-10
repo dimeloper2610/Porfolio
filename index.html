@@ -8,168 +8,196 @@
   <meta property="og:title" content="Dimitrios Fragkoulis — Engineering Team Lead" />
   <meta property="og:description" content="Leading high-performing, self-governing frontend teams. Stockholm, Sweden." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#7c3aed" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c3aed'/><stop offset='1' stop-color='%230891b2'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><text x='50%' y='55%' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='26' fill='white'>DF</text></svg>" />
+  <meta property="og:image" content="https://dimeloper2610.github.io/photo.jpg" />
+  <meta name="theme-color" content="#0a0a12" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237c3aed'/><stop offset='1' stop-color='%2306b6d4'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><text x='50%' y='55%' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='700' font-size='26' fill='white'>DF</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script>
     try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
 </head>
 <body>
+  <div class="bg" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="grain" aria-hidden="true"></div>
+
   <header class="nav">
-    <div class="container nav__inner">
-      <a href="#top" class="nav__logo" aria-label="Home">DF</a>
-      <nav class="nav__links" aria-label="Sections">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-        <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </button>
-    </div>
+    <a href="#top" class="nav__logo" aria-label="Home">DF</a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">
+      <svg class="i-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
   </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero container">
-      <div class="hero__grid">
-        <div>
-          <p class="eyebrow"><span class="dot"></span> Stockholm, Sweden · Open to conversations</p>
-          <p class="hero__hello">Hi, I'm</p>
-          <h1 class="hero__title">Dimitrios<br /><span class="grad-text">Fragkoulis</span></h1>
-          <p class="hero__role">Engineering Team Lead · Frontend</p>
-          <p class="hero__lead">
-            I help engineering teams become their best version — high-performing, self-governing and
-            genuinely enjoyable to be part of. Servant leader by mindset, developer by trade.
-          </p>
-          <div class="hero__cta">
-            <a class="btn btn--primary" href="#contact">Get in touch →</a>
-            <a class="btn btn--ghost" href="#experience">View experience</a>
-            <button class="btn btn--ghost" type="button" id="printBtn">Download CV</button>
-          </div>
-        </div>
+  <main id="top" class="wrap">
 
-        <div class="hero__photo">
-          <div class="avatar">
-            <div class="avatar__inner">
-              <img src="photo.jpg" alt="Dimitrios Fragkoulis" width="400" height="400" />
-            </div>
-          </div>
-          <div class="badge badge--a"><span>🚀</span> Team Lead @ Betsson</div>
-          <div class="badge badge--b"><span>⚡</span> 9+ yrs in tech</div>
-        </div>
-      </div>
+    <!-- ================= HERO BENTO ================= -->
+    <section class="bento bento--hero" aria-label="Introduction">
 
-      <dl class="stats">
-        <div class="stat"><dt>Years in tech</dt><dd>9+</dd></div>
-        <div class="stat"><dt>Years leading teams</dt><dd>4+</dd></div>
-        <div class="stat"><dt>Engineers led</dt><dd>8</dd></div>
-        <div class="stat"><dt>Brands shipped for</dt><dd>5+</dd></div>
-      </dl>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section container reveal">
-      <div class="section__head">
-        <span class="section__kicker">About me</span>
-        <h2 class="section__title">Leader who still speaks code</h2>
-      </div>
-      <div class="about">
-        <div class="about__text">
-          <p>
-            I lead teams using <strong>Agile and Lean</strong> methodologies, applying a
-            <strong>servant leadership</strong> mindset to transform teams into high-performing,
-            self-governing units. I'm a strong believer in transparency, feedback, coaching and
-            mentoring — and in letting people step up so I can watch them grow.
-          </p>
-          <p>
-            Before leading, I spent years building: I have extensive hands-on experience across
-            <strong>front-end and back-end</strong> technologies and adapt quickly to new ones.
-            Constant learning is at my core, so I like to challenge assumptions and how things are
-            done — both for myself and for others.
-          </p>
+      <article class="tile tile--photo">
+        <img src="photo.jpg" alt="Dimitrios Fragkoulis" width="400" height="400" />
+        <div class="photo__caption">
+          <span class="chip chip--glass"><span class="pulse"></span> Open to conversations</span>
+          <h1 class="photo__name">Dimitrios<br />Fragkoulis</h1>
         </div>
+      </article>
+
+      <article class="tile tile--intro">
+        <p class="kicker">Engineering Team Lead · Frontend</p>
+        <h2 class="intro__headline">I build <span class="grad">teams</span> that build great products.</h2>
+        <p class="intro__lead">
+          Servant leader by mindset, developer by trade. I help engineering teams become
+          high-performing, self-governing — and genuinely enjoyable to be part of.
+        </p>
+        <div class="cta">
+          <a class="btn btn--primary" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#experience">Experience</a>
+          <button class="btn btn--ghost" type="button" id="printBtn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            CV
+          </button>
+        </div>
+      </article>
+
+      <article class="tile tile--stat t-years">
+        <span class="stat__num"><span data-count="9">9</span>+</span>
+        <span class="stat__label">years in tech</span>
+      </article>
+      <article class="tile tile--stat t-devs">
+        <span class="stat__num" data-count="8">8</span>
+        <span class="stat__label">engineers led</span>
+      </article>
+      <article class="tile tile--stat t-brands">
+        <span class="stat__num"><span data-count="5">5</span>+</span>
+        <span class="stat__label">brands shipped for</span>
+      </article>
+
+      <article class="tile tile--now">
+        <span class="label"><span class="pulse"></span> Now</span>
+        <p class="now__role">Engineering FE Team Lead</p>
+        <p class="now__company">@ Betsson Group</p>
+        <span class="now__since">since Aug 2022</span>
+      </article>
+
+      <article class="tile tile--stack">
+        <span class="label">Toolbox</span>
+        <div class="marquee" aria-label="Technologies">
+          <ul class="marquee__row">
+            <li>Angular</li><li>TypeScript</li><li>StencilJS</li><li>React</li><li>Micro-frontends</li><li>JavaScript</li><li>SCSS</li><li>Accessibility</li>
+            <li aria-hidden="true">Angular</li><li aria-hidden="true">TypeScript</li><li aria-hidden="true">StencilJS</li><li aria-hidden="true">React</li><li aria-hidden="true">Micro-frontends</li><li aria-hidden="true">JavaScript</li><li aria-hidden="true">SCSS</li><li aria-hidden="true">Accessibility</li>
+          </ul>
+          <ul class="marquee__row marquee__row--rev">
+            <li>Node.js</li><li>.NET Core</li><li>AWS</li><li>Serverless</li><li>CloudFormation</li><li>CI/CD</li><li>Jasmine</li><li>OKRs</li>
+            <li aria-hidden="true">Node.js</li><li aria-hidden="true">.NET Core</li><li aria-hidden="true">AWS</li><li aria-hidden="true">Serverless</li><li aria-hidden="true">CloudFormation</li><li aria-hidden="true">CI/CD</li><li aria-hidden="true">Jasmine</li><li aria-hidden="true">OKRs</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="tile tile--loc">
+        <svg class="loc__map" viewBox="0 0 200 120" aria-hidden="true">
+          <defs>
+            <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" /></pattern>
+          </defs>
+          <rect width="200" height="120" fill="url(#dots)" />
+        </svg>
+        <span class="loc__pin" aria-hidden="true"></span>
+        <div class="loc__text">
+          <span class="label">Based in</span>
+          <p class="loc__city">Stockholm, Sweden</p>
+          <p class="loc__time"><span id="clock">--:--</span> local time</p>
+        </div>
+      </article>
+
+      <article class="tile tile--quote">
+        <svg class="quote__mark" viewBox="0 0 32 32" width="34" height="34" aria-hidden="true"><path d="M10 8C6 10 4 13.5 4 18v6h8v-8H8c0-3 1.4-5 4-6.4L10 8zm14 0c-4 2-6 5.5-6 10v6h8v-8h-4c0-3 1.4-5 4-6.4L24 8z" fill="currentColor"/></svg>
+        <p class="quote__text">
+          A strong believer in transparency, feedback, coaching and mentoring — and in letting people
+          step up and watching them grow.
+        </p>
+      </article>
+
+      <article class="tile tile--values">
+        <span class="label">How I lead</span>
         <ul class="values">
-          <li class="card"><div class="values__icon">🤝</div><div><h3>Servant leadership</h3><p>Remove blockers, create space, let people own the outcome.</p></div></li>
-          <li class="card"><div class="values__icon">💬</div><div><h3>Transparency &amp; feedback</h3><p>Clear goals, honest 1:1s and feedback that flows both ways.</p></div></li>
-          <li class="card"><div class="values__icon">🛠️</div><div><h3>Technical depth</h3><p>Architecture, code quality and CI/CD — I speak the team's language.</p></div></li>
+          <li><span class="values__ic">🤝</span><div><strong>Servant leadership</strong><p>Remove blockers, let people own outcomes.</p></div></li>
+          <li><span class="values__ic">🔁</span><div><strong>Agile &amp; Lean</strong><p>Small steps, fast feedback, continuous improvement.</p></div></li>
+          <li><span class="values__ic">🛠️</span><div><strong>Technical depth</strong><p>Architecture, quality, CI/CD — I speak the team's language.</p></div></li>
         </ul>
-      </div>
+      </article>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section container reveal">
-      <div class="section__head">
-        <span class="section__kicker">Experience</span>
+    <!-- ================= EXPERIENCE ================= -->
+    <section id="experience" class="section reveal">
+      <header class="section__head">
+        <span class="kicker">Experience</span>
         <h2 class="section__title">Where I've made an impact</h2>
-      </div>
+      </header>
 
-      <ol class="timeline">
-        <li class="job job--current">
-          <article class="card job__card">
-            <div class="job__top">
-              <h3 class="job__title">Engineering FE Team Lead <span class="job__company">Betsson Group</span></h3>
-              <div class="job__meta"><span class="job__date">Aug 2022 — Present</span><span class="job__place">Sweden · Remote team</span></div>
-            </div>
+      <div class="exp tile">
+        <div class="exp__tabs" role="tablist" aria-label="Roles">
+          <button class="exp__tab" role="tab" id="tab-1" aria-controls="job-1" aria-selected="true">
+            <span class="exp__co">Betsson Group</span><span class="exp__yr">2022 — Now</span>
+          </button>
+          <button class="exp__tab" role="tab" id="tab-2" aria-controls="job-2" aria-selected="false" tabindex="-1">
+            <span class="exp__co">Daniel Wellington</span><span class="exp__yr">2021 — 2022</span>
+          </button>
+          <button class="exp__tab" role="tab" id="tab-3" aria-controls="job-3" aria-selected="false" tabindex="-1">
+            <span class="exp__co">Betsson Group</span><span class="exp__yr">2017 — 2021</span>
+          </button>
+          <button class="exp__tab" role="tab" id="tab-4" aria-controls="job-4" aria-selected="false" tabindex="-1">
+            <span class="exp__co">Hellenic Navy</span><span class="exp__yr">2012 — 2013</span>
+          </button>
+          <span class="exp__indicator" aria-hidden="true"></span>
+        </div>
+
+        <div class="exp__panels">
+          <div class="exp__panel" role="tabpanel" id="job-1" aria-labelledby="tab-1">
+            <h3 class="job__title">Engineering FE Team Lead <span class="job__at">@ Betsson Group</span></h3>
+            <p class="job__meta">Aug 2022 — Present · Sweden · Distributed team</p>
             <ul class="job__points">
               <li>Lead a <strong>distributed team of 8 frontend developers</strong>, fostering a high-performing remote environment.</li>
               <li>Spearheaded a <strong>micro-frontend architecture with StencilJS</strong>, improving code maintainability across products.</li>
               <li>Oversee robust frontend solutions in <strong>Angular, TypeScript and JavaScript</strong>, reducing bug reports.</li>
               <li>Established and track <strong>team OKRs</strong>, achieving a high percentage of objectives.</li>
               <li>Own technical interviews and onboarding, attracting and ramping up top remote talent.</li>
-              <li>Run regular 1:1s and contribute to performance reviews, improving employee satisfaction and growth.</li>
+              <li>Run regular 1:1s and contribute to performance reviews, improving satisfaction and growth.</li>
               <li>Champion code quality through reviews, testing and CI/CD, steadily decreasing technical debt.</li>
-              <li>Partner with POs/PMs across time zones for smoother sprints; drive innovation by researching new technologies.</li>
+              <li>Partner with POs/PMs across time zones for smoother sprints; research and introduce new technologies.</li>
             </ul>
             <ul class="tags"><li>Leadership</li><li>Angular</li><li>StencilJS</li><li>Micro-frontends</li><li>OKRs</li><li>Accessibility</li></ul>
-          </article>
-        </li>
+          </div>
 
-        <li class="job">
-          <article class="card job__card">
-            <div class="job__top">
-              <h3 class="job__title">Team Lead <span class="job__company">Daniel Wellington</span></h3>
-              <div class="job__meta"><span class="job__date">Feb 2022 — Aug 2022</span><span class="job__place">Stockholm, Sweden</span></div>
-            </div>
+          <div class="exp__panel" role="tabpanel" id="job-2" aria-labelledby="tab-2" hidden>
+            <h3 class="job__title">Team Lead <span class="job__at">@ Daniel Wellington</span></h3>
+            <p class="job__meta">Feb 2022 — Aug 2022 · Stockholm</p>
             <ul class="job__points">
               <li>Supported, mentored and coached teams and scrum masters to become high-performing.</li>
               <li>Facilitated activities to discover and improve ways of working; secured long-term quality and delivery.</li>
               <li>Held regular 1:1s with direct reports and helped build trust inside teams.</li>
               <li>Enabled knowledge sharing across teams and locations; provided technical feedback to the business.</li>
             </ul>
-            <ul class="tags"><li>Coaching</li><li>Ways of working</li><li>Scrum</li></ul>
-          </article>
-        </li>
-
-        <li class="job">
-          <article class="card job__card">
-            <div class="job__top">
-              <h3 class="job__title">Full-stack Developer <span class="job__company">Daniel Wellington</span></h3>
-              <div class="job__meta"><span class="job__date">Sep 2021 — Aug 2022</span><span class="job__place">Stockholm, Sweden</span></div>
-            </div>
+            <h3 class="job__title job__title--sub">Full-stack Developer <span class="job__at">@ Daniel Wellington</span></h3>
+            <p class="job__meta">Sep 2021 — Aug 2022 · Stockholm</p>
             <ul class="job__points">
               <li>Designed, developed and maintained the <strong>Daniel Wellington e-commerce</strong> platform with React and Angular.</li>
               <li>Built <strong>event-driven, serverless services</strong> on AWS with CI/CD via AWS CodePipeline.</li>
               <li>Developed infrastructure as code using <strong>CloudFormation</strong> and the Serverless Framework.</li>
               <li>Built an internal control dashboard with React and AWS Amplify.</li>
             </ul>
-            <ul class="tags"><li>React</li><li>Angular</li><li>AWS</li><li>Serverless</li><li>CloudFormation</li></ul>
-          </article>
-        </li>
+            <ul class="tags"><li>Coaching</li><li>React</li><li>Angular</li><li>AWS</li><li>Serverless</li><li>CloudFormation</li></ul>
+          </div>
 
-        <li class="job">
-          <article class="card job__card">
-            <div class="job__top">
-              <h3 class="job__title">Frontend Developer <span class="job__company">Betsson Group</span></h3>
-              <div class="job__meta"><span class="job__date">Sep 2017 — Sep 2021</span><span class="job__place">Stockholm, Sweden</span></div>
-            </div>
+          <div class="exp__panel" role="tabpanel" id="job-3" aria-labelledby="tab-3" hidden>
+            <h3 class="job__title">Frontend Developer <span class="job__at">@ Betsson Group</span></h3>
+            <p class="job__meta">Sep 2017 — Sep 2021 · Stockholm</p>
             <ul class="job__points">
               <li>Built the frontend platform powering <strong>Betsson, Betsafe, NordicBet, Mobilbahis and Bets10</strong>.</li>
               <li>Developed an adaptive architecture: separate mobile and desktop Angular apps sharing common libraries, served by Node and .NET MVC backends.</li>
@@ -177,83 +205,86 @@
               <li>Ensured web standards, SEO, usability and browser compatibility; rotated as Scrum Master.</li>
             </ul>
             <ul class="tags"><li>Angular</li><li>TypeScript</li><li>.NET</li><li>Node</li><li>Jasmine</li><li>TeamCity</li></ul>
-          </article>
-        </li>
+          </div>
 
-        <li class="job">
-          <article class="card job__card">
-            <div class="job__top">
-              <h3 class="job__title">Computer Center Staff <span class="job__company">Hellenic Navy</span></h3>
-              <div class="job__meta"><span class="job__date">Oct 2012 — Sep 2013</span><span class="job__place">Greece</span></div>
-            </div>
+          <div class="exp__panel" role="tabpanel" id="job-4" aria-labelledby="tab-4" hidden>
+            <h3 class="job__title">Computer Center Staff <span class="job__at">@ Hellenic Navy</span></h3>
+            <p class="job__meta">Oct 2012 — Sep 2013 · Greece</p>
             <ul class="job__points">
               <li>Member of the staff of the organization's computer center.</li>
             </ul>
-          </article>
-        </li>
-      </ol>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills" class="section container reveal">
-      <div class="section__head">
-        <span class="section__kicker">Skills</span>
+    <!-- ================= SKILLS ================= -->
+    <section id="skills" class="section reveal">
+      <header class="section__head">
+        <span class="kicker">Skills</span>
         <h2 class="section__title">What I bring to the table</h2>
-      </div>
-      <div class="skills">
-        <div class="card skill-card">
-          <h3>🧭 Leadership</h3>
+      </header>
+      <div class="bento bento--skills">
+        <article class="tile skill skill--lead">
+          <span class="skill__ic">🧭</span>
+          <h3>Leadership</h3>
           <ul class="tags"><li>People management</li><li>Building leadership teams</li><li>Servant leadership</li><li>Coaching &amp; mentoring</li><li>Agile / Scrum</li><li>Lean</li><li>OKRs</li><li>Technical hiring</li><li>Remote teams</li></ul>
-        </div>
-        <div class="card skill-card">
-          <h3>🎨 Frontend</h3>
+        </article>
+        <article class="tile skill">
+          <span class="skill__ic">🎨</span>
+          <h3>Frontend</h3>
           <ul class="tags"><li>Angular</li><li>TypeScript</li><li>JavaScript</li><li>React</li><li>StencilJS</li><li>Micro-frontends</li><li>HTML5</li><li>SCSS</li><li>Accessibility</li><li>SEO</li></ul>
-        </div>
-        <div class="card skill-card">
-          <h3>☁️ Backend &amp; Cloud</h3>
+        </article>
+        <article class="tile skill">
+          <span class="skill__ic">☁️</span>
+          <h3>Backend &amp; Cloud</h3>
           <ul class="tags"><li>Node.js</li><li>C# / .NET Core</li><li>ASP.NET MVC</li><li>Web API / REST</li><li>AWS</li><li>Serverless</li><li>CloudFormation</li><li>AWS Amplify</li></ul>
-        </div>
-        <div class="card skill-card">
-          <h3>✅ Quality &amp; Delivery</h3>
+        </article>
+        <article class="tile skill">
+          <span class="skill__ic">✅</span>
+          <h3>Quality &amp; Delivery</h3>
           <ul class="tags"><li>Jasmine</li><li>Karma</li><li>Protractor</li><li>xUnit</li><li>CI/CD</li><li>TeamCity</li><li>Octopus Deploy</li><li>Sentry</li><li>Splunk</li><li>Git</li></ul>
-        </div>
+        </article>
       </div>
     </section>
 
-    <!-- EDUCATION -->
-    <section id="education" class="section container reveal">
-      <div class="section__head">
-        <span class="section__kicker">Education</span>
+    <!-- ================= EDUCATION + CONTACT ================= -->
+    <section id="education" class="section reveal">
+      <header class="section__head">
+        <span class="kicker">Education</span>
         <h2 class="section__title">Education &amp; certifications</h2>
-      </div>
-      <div class="edu">
-        <article class="card edu__item">
-          <span class="edu__date">2011 — 2017</span>
-          <h3>🎓 BSc in Computer &amp; Informatics Engineering</h3>
+      </header>
+      <div class="bento bento--edu">
+        <article class="tile edu">
+          <span class="edu__ic">🎓</span>
+          <span class="label">2011 — 2017</span>
+          <h3>BSc in Computer &amp; Informatics Engineering</h3>
           <p>Department of Computer &amp; Informatics Engineering · Computer Software Engineering</p>
         </article>
-        <article class="card edu__item">
-          <span class="edu__date">Certification</span>
-          <h3>🏅 Team Captain Program Certificate</h3>
+        <article class="tile edu">
+          <span class="edu__ic">🏅</span>
+          <span class="label">Certification</span>
+          <h3>Team Captain Program Certificate</h3>
           <p>Leadership development program</p>
         </article>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section container reveal">
-      <div class="contact">
+    <section id="contact" class="section reveal">
+      <article class="tile contact">
+        <span class="kicker kicker--light">Contact</span>
         <h2 class="contact__title">Let's build great teams.</h2>
-        <p class="contact__lead">Whether it's a leadership role, a team that needs a boost or just a good conversation about engineering culture — my inbox is open.</p>
-        <div class="contact__links">
+        <p class="contact__lead">Whether it's a leadership role, a team that needs a boost or a good conversation about engineering culture — my inbox is open.</p>
+        <div class="cta cta--center">
           <a class="btn btn--light" href="mailto:mhtsosfrag3@gmail.com">mhtsosfrag3@gmail.com</a>
+          <button class="btn btn--outline" type="button" id="copyEmail" data-email="mhtsosfrag3@gmail.com">Copy email</button>
           <a class="btn btn--outline" href="https://www.linkedin.com/in/dimitrios-fragkoulis-1a848314b" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
-      </div>
+      </article>
     </section>
   </main>
 
-  <footer class="footer container">
+  <footer class="footer wrap">
     <p>© <span id="year">2026</span> Dimitrios Fragkoulis · Stockholm</p>
     <a href="#top">Back to top ↑</a>
   </footer>
