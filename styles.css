@@ -252,6 +252,24 @@ strong { font-weight: 600; color: var(--text); }
 /* location */
 .tile--loc { display: flex; align-items: flex-end; min-height: 170px; }
 .loc__map { position: absolute; inset: 0; width: 100%; height: 100%; fill: var(--muted); opacity: .25; z-index: -1; }
+/* real map (Leaflet); dot pattern above stays as fallback if tiles don't load */
+.loc__real { position: absolute; inset: 0; z-index: -1; background: transparent !important; opacity: 0; transition: opacity .6s; }
+.loc__real.ready { opacity: 1; }
+/* light: soft grey with a violet tint · dark: inverted night map */
+.loc__real .leaflet-tile-pane { filter: grayscale(1) contrast(.9) brightness(1.05) sepia(.25) hue-rotate(215deg) saturate(1.4); opacity: .75; }
+:root[data-theme="dark"] .loc__real .leaflet-tile-pane { filter: grayscale(1) invert(1) contrast(.85) brightness(.75) sepia(.3) hue-rotate(210deg) saturate(1.6); opacity: .8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .loc__real .leaflet-tile-pane { filter: grayscale(1) invert(1) contrast(.85) brightness(.75) sepia(.3) hue-rotate(210deg) saturate(1.6); opacity: .8; }
+}
+.loc__fade {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(to top, color-mix(in srgb, var(--tile-solid) 94%, transparent) 0%, color-mix(in srgb, var(--tile-solid) 78%, transparent) 42%, transparent 75%);
+}
+.tile--loc { min-height: 190px; }
+.loc__pin { z-index: 1; }
+.loc__text { position: relative; z-index: 1; }
+.loc__attr { position: absolute; right: 10px; bottom: 6px; z-index: 1; font-size: 9.5px; color: var(--muted); opacity: .8; }
+.loc__attr a { color: inherit; text-decoration: none; }
 .loc__pin {
   position: absolute; top: 34%; right: 30%; width: 14px; height: 14px; border-radius: 50%;
   background: var(--c1); box-shadow: 0 0 0 6px color-mix(in srgb, var(--c1) 25%, transparent);

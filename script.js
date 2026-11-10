@@ -9,7 +9,36 @@
     const next = isDark() ? 'light' : 'dark';
     root.dataset.theme = next;
     try { localStorage.setItem('theme', next); } catch (e) {}
+    updateMapTheme();
   });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => updateMapTheme());
+
+  /* ---------- Real map of central Stockholm (static, non-interactive) ---------- */
+  let tiles = null;
+  const STHLM = [59.3326, 18.0649]; // city centre
+  // OpenStreetMap tiles; theme colouring is done with CSS filters (see .loc__real in styles.css)
+  const tileUrl = () => 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  function updateMapTheme() { /* CSS handles light/dark */ }
+  const mapEl = document.getElementById('map');
+  if (window.L && mapEl) {
+    const map = L.map(mapEl, {
+      zoomControl: false, attributionControl: false, dragging: false, scrollWheelZoom: false,
+      doubleClickZoom: false, boxZoom: false, keyboard: false, touchZoom: false, tap: false,
+      zoomSnap: 0.25, inertia: false,
+    });
+    tiles = L.tileLayer(tileUrl(), { maxZoom: 19, referrerPolicy: 'strict-origin-when-cross-origin' });
+    tiles.once('load', () => mapEl.classList.add('ready'));
+    tiles.addTo(map);
+    // place the city centre under the pin (pin sits at 30% from right, 34% from top)
+    const placeOnPin = () => {
+      const s = map.getSize();
+      const pin = L.point(s.x * 0.70, s.y * 0.34);
+      map.setView(STHLM, 13.25, { animate: false });
+      map.panBy(map.getSize().divideBy(2).subtract(pin), { animate: false });
+    };
+    placeOnPin();
+    window.addEventListener('resize', () => { map.invalidateSize(); placeOnPin(); });
+  }
 
   /* ---------- Copy email ---------- */
   const copyBtn = document.getElementById('copyEmail');
