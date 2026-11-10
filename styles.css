@@ -211,7 +211,19 @@ strong { font-weight: 600; color: var(--text); }
 .tile--stat { display: flex; flex-direction: column; justify-content: space-between; min-height: 150px; }
 .stat__num { font: 700 clamp(40px, 4.4vw, 56px)/1 var(--display); letter-spacing: -.04em; }
 .stat__num, .stat__num span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.stat__label { color: var(--muted); font-size: 14px; }
+.stat__num { display: block; margin-bottom: 6px; }
+.stat__label { display: block; color: var(--muted); font-size: 14px; }
+
+/* line icons */
+.ic {
+  flex: none; display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 12px;
+  background: var(--tag-bg); color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.ic svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ic--lg { width: 48px; height: 48px; border-radius: 14px; }
+.ic--lg svg { width: 23px; height: 23px; }
+.tile:hover .ic { background: color-mix(in srgb, var(--accent) 18%, transparent); }
 
 /* now */
 .tile--now { display: flex; flex-direction: column; gap: 4px; background:
@@ -261,7 +273,6 @@ strong { font-weight: 600; color: var(--text); }
 /* values */
 .values { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 14px; }
 .values li { display: flex; gap: 14px; align-items: flex-start; }
-.values__ic { flex: none; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: var(--tag-bg); font-size: 18px; }
 .values strong { font: 600 15.5px var(--display); }
 .values p { color: var(--muted); font-size: 14px; }
 
@@ -304,7 +315,6 @@ strong { font-weight: 600; color: var(--text); }
 .skill--lead { grid-row: span 2; background: linear-gradient(160deg, color-mix(in srgb, var(--c1) 14%, var(--tile)), var(--tile)); }
 .skill:last-child { grid-column: span 2; }
 .skill h3 { font: 600 20px var(--display); margin: 14px 0 16px; }
-.skill__ic, .edu__ic { font-size: 26px; display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: var(--tag-bg); }
 
 /* education */
 .bento--edu { grid-template-columns: 1fr 1fr; }
@@ -415,7 +425,7 @@ strong { font-weight: 600; color: var(--text); }
   }
   @page { margin: 14mm; }
   body { font-size: 10.5pt; line-height: 1.45; }
-  .bg, .grain, .nav, .footer, .cta, .tile--photo, .tile--stack, .tile--loc, .tile--now, .tile--stat, .tile--values, .exp__tabs, .chip, .skill__ic, .edu__ic { display: none !important; }
+  .bg, .grain, .nav, .footer, .cta, .tile--photo, .tile--stack, .tile--loc, .tile--now, .tile--stat, .tile--values, .exp__tabs, .chip, .ic { display: none !important; }
   .reveal, .bento--hero .tile { opacity: 1 !important; transform: none !important; animation: none !important; }
   .tile { border: 0; box-shadow: none; backdrop-filter: none; padding: 0; background: none !important; overflow: visible; }
   .tile::before, .contact::after { display: none; }

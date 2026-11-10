@@ -19,7 +19,7 @@
   copyBtn.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(copyBtn.dataset.email);
-      copyBtn.textContent = 'Copied ✓';
+      copyBtn.textContent = 'Copied';
     } catch (e) {
       copyBtn.textContent = copyBtn.dataset.email;
     }
