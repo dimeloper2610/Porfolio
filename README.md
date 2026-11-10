@@ -8,3 +8,15 @@ Plain HTML/CSS/JS, no build step. Hosted with GitHub Pages from the `main` branc
 - `styles.css` — design (light/dark theme, print styles for "Download CV")
 - `script.js` — theme toggle, scroll animations
 - `photo.jpg` — profile photo
+
+## Notes
+
+- Live site: https://dimeloper2610.github.io/
+- Code: [dimeloper2610/dimeloper2610.github.io](https://github.com/dimeloper2610/dimeloper2610.github.io)
+- Custom domain request: [is-a-dev/register#60815](https://github.com/is-a-dev/register/pull/60815) for `fragkoulis.is-a.dev` (all checks passed, waiting for review)
+
+### After the domain PR is merged
+
+1. Check DNS works: `dig +short fragkoulis.is-a.dev` should point to `dimeloper2610.github.io`.
+2. Set the custom domain in GitHub Pages: repo **Settings → Pages → Custom domain** → `fragkoulis.is-a.dev`.
+3. Tick **Enforce HTTPS** once the certificate is ready.
