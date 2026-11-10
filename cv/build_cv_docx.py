@@ -99,7 +99,7 @@ p = c1.add_paragraph()
 run(p, "Engineering Team Lead · Frontend", bold=True, color=ACCENT, size=12)
 p = c1.add_paragraph()
 p.paragraph_format.space_before = Pt(3)
-run(p, "Stockholm, Sweden  ·  mhtsosfrag3@gmail.com  ·  linkedin.com/in/dimitrios-fragkoulis-1a848314b  ·  dimeloper2610.github.io",
+run(p, "Stockholm, Sweden  ·  fragkoulis.dev@gmail.com  ·  linkedin.com/in/dimitrios-fragkoulis-1a848314b  ·  dimeloper2610.github.io",
     color=MUTED, size=9)
 
 
@@ -206,6 +206,14 @@ p = doc.add_paragraph()
 run(p, "Team Captain Program Certificate", bold=True)
 p = doc.add_paragraph()
 run(p, "Leadership development program", color=MUTED, size=9.5)
+
+heading("Languages")
+p = doc.add_paragraph()
+for i, (lang, level) in enumerate([("Greek", "Native"), ("English", "Fluent"), ("Swedish", "Basic")]):
+    if i:
+        run(p, "   ·   ", color=MUTED)
+    run(p, lang, bold=True)
+    run(p, " — " + level)
 
 doc.save(OUT)
 print("saved", OUT)

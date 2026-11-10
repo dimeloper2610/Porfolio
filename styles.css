@@ -344,7 +344,14 @@ strong { font-weight: 600; color: var(--text); }
 .skill h3 { font: 600 20px var(--display); margin: 14px 0 16px; }
 
 /* education */
-.bento--edu { grid-template-columns: 1fr 1fr; }
+.bento--edu { grid-template-columns: 1.15fr 1.15fr .9fr; }
+.langs { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+.langs li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--border); }
+.langs li:last-child { border-bottom: 0; padding-bottom: 0; }
+.langs span { font: 600 17px var(--display); }
+.langs em { font-style: normal; font: 500 12px var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+@media (max-width: 1000px) { .bento--edu { grid-template-columns: 1fr 1fr; } .bento--edu .edu:last-child { grid-column: span 2; } }
+@media (max-width: 720px) { .bento--edu .edu:last-child { grid-column: auto; } }
 .edu { display: flex; flex-direction: column; gap: 6px; }
 .edu .label { margin-top: 14px; }
 .edu h3 { font: 600 20px/1.25 var(--display); }
@@ -496,5 +503,5 @@ strong { font-weight: 600; color: var(--text); }
   .contact__title { font-size: 15pt; margin: 0 0 4pt; }
   .contact__lead { color: #333; margin: 0; }
   .contact .kicker { display: none; }
-  .contact::before { content: "Email: mhtsosfrag3@gmail.com · LinkedIn: linkedin.com/in/dimitrios-fragkoulis-1a848314b"; display: block; position: static; opacity: 1; background: none; order: 9; }
+  .contact::before { content: "Email: fragkoulis.dev@gmail.com · LinkedIn: linkedin.com/in/dimitrios-fragkoulis-1a848314b"; display: block; position: static; opacity: 1; background: none; order: 9; }
 }

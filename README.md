@@ -10,6 +10,7 @@ Plain HTML/CSS/JS, no build step. Hosted with GitHub Pages from the `main` branc
 - `photo.jpg` — profile photo
 - `Dimitrios-Fragkoulis-CV.pdf` — downloadable CV, exported from `cv/cv.html` with headless Chrome
 - `Dimitrios-Fragkoulis-CV.docx` — Word version, built by `cv/build_cv_docx.py` (needs `python-docx`)
+- `og-image.png` — 1200×630 link-preview image, rendered from `og/card.html` with headless Chrome
 - Update `cv/cv.html` and `cv/build_cv_docx.py` together when CV content changes, then regenerate both files
 
 ## Notes
