@@ -8,7 +8,9 @@ Plain HTML/CSS/JS, no build step. Hosted with GitHub Pages from the `main` branc
 - `styles.css` — design (light/dark theme, print styles for "Download CV")
 - `script.js` — theme toggle, scroll animations
 - `photo.jpg` — profile photo
-- `Dimitrios-Fragkoulis-CV.pdf` — downloadable CV, generated from the page's print stylesheet (regenerate after content changes)
+- `Dimitrios-Fragkoulis-CV.pdf` — downloadable CV, exported from `cv/cv.html` with headless Chrome
+- `Dimitrios-Fragkoulis-CV.docx` — Word version, built by `cv/build_cv_docx.py` (needs `python-docx`)
+- Update `cv/cv.html` and `cv/build_cv_docx.py` together when CV content changes, then regenerate both files
 
 ## Notes
 
