@@ -99,7 +99,7 @@ p = c1.add_paragraph()
 run(p, "Engineering Team Lead · Frontend", bold=True, color=ACCENT, size=12)
 p = c1.add_paragraph()
 p.paragraph_format.space_before = Pt(3)
-run(p, "Stockholm, Sweden  ·  fragkoulis.dev@gmail.com  ·  linkedin.com/in/dimitrios-fragkoulis-1a848314b  ·  dimeloper2610.github.io",
+run(p, "Stockholm, Sweden  ·  fragkoulis.dev@gmail.com  ·  linkedin.com/in/dimitrios-fragkoulis-1a848314b  ·  fragkoulis.is-a.dev",
     color=MUTED, size=9)
 
 
